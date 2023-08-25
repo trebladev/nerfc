@@ -1,8 +1,11 @@
 #include <nerf_loader.h>
 #include <filesystem>
+#include <tqdm/tqdm.h>
 
-void nerf::Loader::load_images(std::string root_dir) {
+void nerf::Loader::load_images() {
 
+    // load images
+    count_images();
     // check if dir exists
     std::vector<std::string> sub_dirs = {"test", "train", "val"};
     std::vector<std::string> missing;
@@ -29,4 +32,31 @@ void nerf::Loader::load_images(std::string root_dir) {
         std::cout << "Can not find root_dir: " << root_dir << "!" << std::endl;
     }
 
+    tqdm bar(num_image);
+    for (const auto & entry : std::filesystem::directory_iterator(root_dir+"/"+mode)){
+        std::string path = entry.path();
+        cv::Mat image = cv::imread(path);
+        images.push_back(image);
+//        std::cout << path << std::endl;
+        bar.update();
+    }
+
+    H = images[0].rows;
+    W = images[0].cols;
+    C = images[0].channels();
+
 }
+
+void nerf::Loader::count_images() {
+    const std::filesystem::path image_dir = root_dir + "/" + mode;
+    num_image = 0;
+
+    for (const auto & entry : std::filesystem::directory_iterator(image_dir)){
+        num_image++;
+    }
+
+
+    printf("Found %d images in %s\n", num_image, image_dir.c_str());
+}
+
+

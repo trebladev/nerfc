@@ -8,6 +8,7 @@
 #include <opencv2/opencv.hpp>
 #include <iostream>
 #include <argparse.hpp>
+#include "tqdm/tqdm.h"
 
 namespace nerf{
     class Loader {
@@ -15,11 +16,18 @@ namespace nerf{
         int W;
         int H;
         int N;
+        int C;
+        int num_image;
+        std::string mode;
         std::string root_dir;
         argparse::ArgumentParser arg;
 
         std::vector<cv::Mat> images;
-        void load_images(std::string root_dir);
+        void load_images();
+        void count_images();
+
+        Loader(std::string root_dir, std::string mode) : root_dir(root_dir), mode(mode) {}
+        ~Loader() = default;
 
     };
 };

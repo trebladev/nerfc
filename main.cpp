@@ -6,9 +6,9 @@
 
 int main(int argc, char** argv){
 
-    auto* loader = new nerf::Loader();
-    loader->load_images("./data/nerf/lego");
-    std::cout<< "hello world" << std::endl;
+    auto* loader = new nerf::Loader("./data/nerf/chair", "train");
+    loader->load_images();
+//    std::cout<< "hello world" << std::endl;
 
     delete loader;
     return 0;

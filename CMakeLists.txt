@@ -14,6 +14,7 @@ include_directories(
         ${CUDA_INCLUDE_DIRS}
         #${CUDA_HEADERS}
         ./include
+        ./include/tqdm
         ${OpenCV_INCLUDE_DIRS}
 )
 
