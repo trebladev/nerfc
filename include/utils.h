@@ -8,6 +8,9 @@
 #include <sys/time.h>
 #include <iostream>
 #include <chrono>
+#include <Eigen/Core>
+#include <Eigen/Dense>
+#include <opencv2/opencv.hpp>
 
 #define CHECK(call)                                                            \
 {                                                                              \
@@ -88,5 +91,7 @@ inline double seconds()
     auto d = std::chrono::duration_cast<std::chrono::duration<double>>( __TIMER##NAME##_END - __TIMER##NAME##_START ).count(); \
     std::cout << "Timer: " << #NAME << " " << (d) * 1000 << "ms" << "\n"; \
   }
+
+//  void plotRays(const Eigen::MatrixXf& rays_o, const Eigen::MatrixXf& rays_d, const Eigen::VectorXf& t);
 
 #endif //CUDA_ACHIEVE_UTILS_H
