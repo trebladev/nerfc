@@ -9,6 +9,8 @@
 #include <iostream>
 #include <argparse.hpp>
 #include "tqdm/tqdm.h"
+#include <json/json.h>
+#include <fstream>
 
 namespace nerf{
     class Loader {
@@ -25,10 +27,10 @@ namespace nerf{
         std::vector<cv::Mat> images;
         void load_images();
         void count_images();
+        void load_configs(std::string config_path);
 
         Loader(std::string root_dir, std::string mode) : root_dir(root_dir), mode(mode) {}
         ~Loader() = default;
-
     };
 };
 

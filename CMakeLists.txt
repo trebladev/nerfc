@@ -13,6 +13,7 @@ set(OpenCV_DIR "/home/xuan/Lib/opencv-4.5.3/build")
 find_package(VTK REQUIRED)
 find_package(OpenCV REQUIRED)
 find_package(PCL 1.12.0 REQUIRED)
+find_package(jsoncpp REQUIRED)
 
 set(Eigen3_DIR CMAKE_INSTALL_PREFIX /usr/local/share/eigen3/cmake)
 find_package(Eigen3 REQUIRED)
@@ -35,7 +36,7 @@ link_directories(${PCL_LIBRARY_DIRS})
 # add_subdirectory(src/demo)
 
 cuda_add_executable(nerfc main.cpp ${NeRF_SOURCES})
-target_link_libraries(nerfc ${OpenCV_LIBS} Eigen3::Eigen)
+target_link_libraries(nerfc ${OpenCV_LIBS} Eigen3::Eigen JsonCpp::JsonCpp)
 
 cuda_add_executable(volume_rendeding test/volume_rendeding.cpp ${NeRF_SOURCES})
-target_link_libraries(volume_rendeding ${OpenCV_LIBS} Eigen3::Eigen ${PCL_LIBRARIES})
+target_link_libraries(volume_rendeding ${OpenCV_LIBS} Eigen3::Eigen ${PCL_LIBRARIES} JsonCpp::JsonCpp)

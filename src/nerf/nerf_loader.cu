@@ -59,4 +59,24 @@ void nerf::Loader::count_images() {
     printf("Found %d images in %s\n", num_image, image_dir.c_str());
 }
 
+void nerf::Loader::load_configs(std::string config_path)
+{
+    std::filesystem::path path = config_path;
+    if (!std::filesystem::exists(path)){
+        std::cout << "Can not find config file: " << config_path << "!" << std::endl;
+    }
+    else {
 
+    }
+
+    Json::Reader reader;
+    Json::Value value;
+    std::ifstream config(config_path);
+    if (!reader.parse(config, value, false)){
+        std::cerr << "parse failed \n";
+		return;
+    }
+    std::string project_name = value["name"].asString();
+    printf("\nProject name: %s\n", project_name.c_str());
+
+}
