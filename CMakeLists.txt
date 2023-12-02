@@ -2,9 +2,12 @@ cmake_minimum_required(VERSION 3.0)
 
 project(cuda_achieve LANGUAGES C CXX)
 set(CMAKE_CXX_STANDARD 17)
+set(-std=c++17)
+add_compile_options(-w)
 # set(CUDA_TOOLKIT_ROOT_DIR "/home/xuan/cuda/cuda-11.7")
 # set(CUDA_CUDART_LIBRARY "/home/xuan/cuda/cuda-11.7/lib64/libcudart.so")
 
+set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_SOURCE_DIR}/cmake/")
 include(${PROJECT_SOURCE_DIR}/cmake/UseCUDA.cmake)
 
